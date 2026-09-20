@@ -22,8 +22,8 @@ superstore-sql-analysis/
 ```
 
 ## What's in each folder
-- **`data/`** — the source CSV and its data dictionary.
-- **`sql/`** — all raw SQL (Oracle dialect): profiling, data-quality checks, and 10 numbered business questions.
+- **`dataset/`** — the source CSV and its data dictionary.
+- **`Query/`** — all raw SQL (Oracle dialect): profiling, data-quality checks, and 10 numbered business questions.
 - **`notebook/`** — the Jupyter notebook that runs the SQL against a live database, builds the charts, and documents the insights.
 - **`charts/`** — the 3 exported PNG visualizations referenced by the notebook.
 
