@@ -64,5 +64,5 @@ Every discount→profit and profit→margin relationship above is flagged in the
 2. Run `sql/superstore.sql` directly, or open `notebook/sql.ipynb` — update the DB connection string first (see the security note in `notebook/README.md`).
 
 ## Author
-Adalat Sadigov — Data Analytics, Baku, Azerbaijan.
+Ədalət Sadıqov — Data Analytics, Baku, Azerbaijan.
 
