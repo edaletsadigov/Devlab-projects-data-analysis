@@ -1,158 +1,227 @@
-# Charts
+# Supermarket Sales Analysis
 
-This folder contains the five interactive Plotly charts from the analysis notebook, exported as static PNG images so they can be viewed directly on GitHub.
+An end-to-end exploratory and statistical analysis of 1,000 supermarket invoices from three branches (Q1 2019), built in Python with pandas, Plotly and SciPy.
 
-> **Source:** [`Supermarket_Ədalət_Sadıqov.ipynb`](../Supermarket_%C6%8Fdal%C9%99t_Sad%C4%B1qov.ipynb) · **Data:** [`supermarket_sales - Sheet1.csv`](../supermarket_sales%20-%20Sheet1.csv) ([dataset documentation](../docs/DATASET_README.md))
->
-> **Note on currency:** the dataset does not state a currency. The charts label sales with `$`, which is an assumption made in the notebook.
-
-## Index
-
-| # | Chart | Type | File |
-|---|-------|------|------|
-| 1 | [Total Sales by Product Line](#1-total-sales-by-product-line) | Horizontal bar | [`01_total_sales_by_product_line.png`](01_total_sales_by_product_line.png) |
-| 2 | [Customer Type Distribution](#2-customer-type-distribution) | Donut | [`02_customer_type_distribution.png`](02_customer_type_distribution.png) |
-| 3 | [Total Sales by Hour of Day](#3-total-sales-by-hour-of-day) | Line with markers | [`03_total_sales_by_hour.png`](03_total_sales_by_hour.png) |
-| 4 | [Total Sales by Branch and Product Line](#4-total-sales-by-branch-and-product-line) | Heatmap | [`04_sales_heatmap_branch_product.png`](04_sales_heatmap_branch_product.png) |
-| 5 | [Correlation Heatmap](#5-correlation-heatmap) | Heatmap | [`05_correlation_heatmap.png`](05_correlation_heatmap.png) |
+![Python](https://img.shields.io/badge/Python-3.12%2B-blue)
+![pandas](https://img.shields.io/badge/pandas-data%20analysis-150458)
+![Plotly](https://img.shields.io/badge/Plotly-charts-3F4F75)
+![SciPy](https://img.shields.io/badge/SciPy-statistics-8CAAE6)
 
 ---
 
-## 1. Total Sales by Product Line
+## Table of contents
 
-![Total Sales by Product Line](01_total_sales_by_product_line.png)
-
-[Open full size](01_total_sales_by_product_line.png)
-
-**What it shows.** Total sales (sum of the `total` column) for each of the six product lines, sorted from highest to lowest. Darker bars mean higher sales.
-
-**How to read it.** Each bar's length is the product line's total sales; the number at the end of the bar is the exact value.
-
-| Product line | Total sales | Share of all sales | Orders |
-|---|---:|---:|---:|
-| Food and beverages | 56,144.84 | 17.4% | 174 |
-| Sports and travel | 55,122.83 | 17.1% | 166 |
-| Electronic accessories | 54,337.53 | 16.8% | 170 |
-| Fashion accessories | 54,305.90 | 16.8% | 178 |
-| Home and lifestyle | 53,861.91 | 16.7% | 160 |
-| Health and beauty | 49,193.74 | 15.2% | 152 |
-
-**Takeaway.** Sales are spread evenly across the six lines: the top-to-bottom gap is 6,951.10 (14.1% of the lowest line), and the top five lines are within about 4% of each other.
-
-**Worth knowing.**
-- Health and beauty is lowest because it has the fewest orders (152 vs 160–178 elsewhere), not because its orders are smaller: its average order value (323.64) is close to the overall average (322.97).
-- The notebook does not test whether the differences between product lines are statistically significant, so treat the ranking as descriptive.
+1. [Project overview](#1-project-overview)
+2. [Key findings](#2-key-findings)
+3. [Charts](#3-charts)
+4. [The dataset in brief](#4-the-dataset-in-brief)
+5. [The notebook in brief](#5-the-notebook-in-brief)
+6. [Final conclusion](#6-final-conclusion)
+7. [Limitations](#7-limitations)
+8. [Repository structure](#8-repository-structure)
+9. [How to run](#9-how-to-run)
+10. [Documentation index](#10-documentation-index)
+11. [Author](#11-author)
 
 ---
 
-## 2. Customer Type Distribution
+## 1. Project overview
 
-![Customer Type Distribution](02_customer_type_distribution.png)
+**Business questions**
 
-[Open full size](02_customer_type_distribution.png)
+- Is the data clean and reliable?
+- How do sales differ by branch, product line, customer type, gender, hour of day and payment method?
+- Are any of those differences, or any relationships between variables, statistically meaningful?
 
-**What it shows.** The share of invoices made by `Member` and `Normal` customers.
+**Approach.** Data validation → cleaning and feature extraction → grouped analysis → visualisation → hypothesis testing (correlation, normality, t-test, Mann-Whitney U, chi-square) → outlier detection.
 
-**How to read it.** Each slice's label gives the customer type and its percentage of all 1,000 invoices.
-
-| Customer type | Invoices | Share |
-|---|---:|---:|
-| Member | 501 | 50.1% |
-| Normal | 499 | 49.9% |
-
-**Takeaway.** The split is almost exactly 50/50, so roughly half of all transactions come from customers who are not members.
-
-**Worth knowing.**
-- The dataset has no customer ID, so these are shares of *invoices*, not of *customers*.
-- Members do not spend significantly more per invoice (average 327.79 vs 318.12; t-test p = 0.5344, Mann-Whitney p = 0.5912).
+**Scope note.** The dataset is invoice-level, covers 89 days, and shows strong signs of being synthetic, so this project demonstrates an analytical workflow rather than measuring a real business. See [Limitations](#7-limitations).
 
 ---
 
-## 3. Total Sales by Hour of Day
+## 2. Key findings
 
-![Total Sales by Hour of Day](03_total_sales_by_hour.png)
-
-[Open full size](03_total_sales_by_hour.png)
-
-**What it shows.** Total sales for each opening hour (10:00–20:59), summed across all 89 days. The `hour` value is extracted from the `time` column.
-
-**How to read it.** The x-axis is the hour the invoice was issued (10 means 10:00–10:59); the y-axis is total sales in that hour across the whole period.
-
-| Hour | Total sales | Orders |
-|---|---:|---:|
-| **19** (highest) | 39,699.51 | 113 |
-| 13 | 34,723.23 | 103 |
-| 10 | 31,421.48 | 101 |
-| 15 | 31,179.51 | 102 |
-| 14 | 30,828.40 | 83 |
-| 11 | 30,377.33 | 90 |
-| 12 | 26,065.88 | 89 |
-| 18 | 26,030.34 | 93 |
-| 16 | 25,226.32 | 77 |
-| 17 | 24,445.22 | 74 |
-| **20** (lowest) | 22,969.53 | 75 |
-
-**Takeaway.** Sales peak at 19:00, with a second, smaller peak at 13:00; the weakest hours are 16:00–17:00 and 20:00.
-
-**Worth knowing.**
-- The y-axis starts at about 22,000, not at zero, which makes the 19:00 peak look larger than it is. In reality 19:00 is roughly 35% above the average hour (29,361).
-- The notebook does not test whether the hourly differences are statistically significant. Use the pattern as a hypothesis for staffing or promotion timing, not as a confirmed result.
+| Area | Finding |
+|---|---|
+| **Overall** | 1,000 invoices, total sales **322,966.75**, average invoice **322.97** |
+| **Branches** | Branch C has the highest sales (110,568.71 vs 106,200.37 for A and 106,197.67 for B) despite having the fewest orders (328), because its average invoice is highest (337.10) |
+| **Product lines** | Evenly balanced: Food and beverages leads (17.4% of sales), Health and beauty is lowest (15.2%); the top-to-bottom gap is 14.1% |
+| **Customers** | 50.1% Member / 49.9% Normal invoices; members spend slightly more per invoice (327.79 vs 318.12) but the difference is **not significant** (p = 0.53 / 0.59) |
+| **Timing** | Sales peak at **19:00** (39,699.51; 113 orders), with a secondary peak at 13:00; weakest hours are 16:00–17:00 and 20:00 |
+| **Weekend vs weekday** | Weekend average invoice is higher (338.65 vs 316.34) but **not significant** (p = 0.19 / 0.11) |
+| **Payment** | Evenly split (Cash 344, Ewallet 345, Credit card 311 invoices); payment method is independent of branch (p = 0.51) |
+| **Associations** | Customer rating is unrelated to spending (r = −0.036, p = 0.25); no significant association between branch, gender, product line and customer type |
+| **Outliers** | 9 unusually large invoices (0.90%); no special treatment needed |
 
 ---
 
-## 4. Total Sales by Branch and Product Line
+## 3. Charts
 
-![Total Sales by Branch and Product Line](04_sales_heatmap_branch_product.png)
+Five charts exported from the notebook. Full explanations are in the [charts documentation](charts/README.md).
 
-[Open full size](04_sales_heatmap_branch_product.png)
-
-**What it shows.** Total sales for every branch × product line combination (3 × 6 = 18 cells). Darker cells mean higher sales.
-
-**How to read it.** Rows are branches (A = Yangon, B = Mandalay, C = Naypyitaw); columns are product lines; each cell shows the sales total.
-
-| Branch | Electronic | Fashion | Food & bev. | Health & beauty | Home & lifestyle | Sports & travel | Branch total |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| A | 18,317.11 | 16,332.51 | 17,163.10 | 12,597.75 | **22,417.20** | 19,372.70 | 106,200.37 |
-| B | 17,051.44 | 16,413.32 | 15,214.89 | **19,980.66** | 17,549.16 | **19,988.20** | 106,197.67 |
-| C | **18,968.97** | **21,560.07** | **23,766.85** | 16,615.33 | 13,895.55 | 15,761.93 | 110,568.71 |
-
-Bold marks the leading branch for each product line.
-
-**Takeaway.** No branch dominates: each one leads in different product lines (C in Electronic, Fashion and Food; B in Health and Sports; A in Home).
-
-**Worth knowing.**
-- The chi-square test of Branch × Product line shows no significant association (χ² = 11.56, p = 0.3156), so these cell differences are most likely random variation rather than real branch preferences.
-- In this dataset `branch` and `city` map one-to-one, so a branch effect cannot be separated from a city effect.
+<table>
+  <tr>
+    <td width="50%"><a href="charts/01_total_sales_by_product_line.png"><img src="charts/01_total_sales_by_product_line.png" alt="Total Sales by Product Line"></a><br><b>1. Total Sales by Product Line</b><br>Sales are spread evenly; Health and beauty trails.</td>
+    <td width="50%"><a href="charts/02_customer_type_distribution.png"><img src="charts/02_customer_type_distribution.png" alt="Customer Type Distribution"></a><br><b>2. Customer Type Distribution</b><br>A near-perfect 50/50 split of Members and Normal customers.</td>
+  </tr>
+  <tr>
+    <td width="50%"><a href="charts/03_total_sales_by_hour.png"><img src="charts/03_total_sales_by_hour.png" alt="Total Sales by Hour of Day"></a><br><b>3. Total Sales by Hour of Day</b><br>Peak at 19:00, secondary peak at 13:00.</td>
+    <td width="50%"><a href="charts/04_sales_heatmap_branch_product.png"><img src="charts/04_sales_heatmap_branch_product.png" alt="Total Sales by Branch and Product Line"></a><br><b>4. Sales by Branch and Product Line</b><br>No branch dominates across all product lines.</td>
+  </tr>
+  <tr>
+    <td colspan="2"><a href="charts/05_correlation_heatmap.png"><img src="charts/05_correlation_heatmap.png" alt="Correlation Heatmap" width="60%"></a><br><b>5. Correlation Heatmap</b><br>Strong correlations are arithmetic; rating is unrelated to everything else.</td>
+  </tr>
+</table>
 
 ---
 
-## 5. Correlation Heatmap
+## 4. The dataset in brief
 
-![Correlation Heatmap](05_correlation_heatmap.png)
+| | |
+|---|---|
+| **File** | [`supermarket_sales - Sheet1.csv`](supermarket_sales%20-%20Sheet1.csv) |
+| **Size** | 1,000 rows × 17 columns |
+| **Period** | 1 Jan – 30 Mar 2019 (89 days) |
+| **Grain** | One row = one invoice |
+| **Locations** | Branch A (Yangon), B (Mandalay), C (Naypyitaw) |
+| **Dimensions** | Customer type, gender, product line (6), payment method (3) |
+| **Measures** | Unit price, quantity, tax, total, cogs, gross income, rating |
+| **Quality** | No missing values, no duplicates, unique invoice IDs |
 
-[Open full size](05_correlation_heatmap.png)
+Important characteristics: `total = cogs × 1.05`, `gross income` equals the 5% tax (so it is **not** profit), `gross margin percentage` is constant, and no currency or customer ID is provided.
 
-**What it shows.** Pearson correlation coefficients between the six numeric columns: `unit_price`, `quantity`, `total`, `cogs`, `gross_income` and `rating`.
-
-**How to read it.** Values run from −1 (perfect negative) to +1 (perfect positive); red is positive, blue is negative, near-white is no linear relationship.
-
-| Pair | r | Interpretation |
-|---|---:|---|
-| `total` / `cogs` / `gross_income` | 1.00 | Identical by construction (see below) |
-| `quantity` – `total` | 0.71 | Expected: total is price × quantity × 1.05 |
-| `unit_price` – `total` | 0.63 | Expected for the same reason |
-| `unit_price` – `quantity` | 0.01 | Customers do not buy more of cheaper items |
-| `rating` – everything else | −0.04 to −0.01 | No linear relationship |
-
-**Takeaway.** The strong correlations are arithmetic, not findings; the only informative result is that customer `rating` is unrelated to anything else in the data (`total` vs `rating`: r = −0.0364, p = 0.2496).
-
-**Worth knowing.**
-- `cogs` = `unit_price` × `quantity`, `tax_5%` = 5% of `cogs`, `total` = `cogs` + `tax_5%`, and `gross_income` equals `tax_5%` in every row, which is why those columns move together perfectly.
-- Correlation describes association, not causation.
+**Full documentation:** [docs/DATASET_README.md](docs/DATASET_README.md) covers the data dictionary, distributions, built-in relationships, data quality checks and limitations.
 
 ---
 
-## How these images were produced
+## 5. The notebook in brief
 
-The charts were built with Plotly Express in the notebook. The figures were extracted from the notebook's saved outputs and exported to PNG (2,200 px wide). The data and design are unchanged; the only edit is on chart 1, where the value labels were prevented from being clipped at the plot edge.
+**File:** [`Supermarket_Ədalət_Sadıqov.ipynb`](Supermarket_%C6%8Fdal%C9%99t_Sad%C4%B1qov.ipynb)
 
+**Workflow:** load → explore → check quality → clean and engineer features (`hour`, `month`, `dayofweek`, `weekend`) → group analysis → visuals → gross margin analysis → statistical tests → payment analysis.
+
+**Libraries**
+
+| Library | Role |
+|---|---|
+| pandas | Loading, cleaning, aggregation, cross-tabulation |
+| Plotly Express | Interactive charts |
+| SciPy (`stats`) | Hypothesis tests |
+| NumPy | Imported; used internally by pandas and SciPy |
+
+**Statistical methods**
+
+| Method | Purpose |
+|---|---|
+| Pearson correlation | Linear relationship between numeric variables |
+| Shapiro-Wilk | Check normality (decides which tests to trust) |
+| t-test and Mann-Whitney U | Compare spending between two groups (Member vs Normal, weekend vs weekday) |
+| Chi-square test of independence | Association between categorical variables |
+| IQR rule | Detect outlier invoices |
+
+**Full documentation:** [docs/NOTEBOOK_README.md](docs/NOTEBOOK_README.md) explains each section, library and test, the reason for choosing it, and the results.
+
+---
+
+## 6. Final conclusion
+
+**The data is clean, and the business it describes is remarkably homogeneous.** Across branches, product lines, customer types, payment methods and weekend/weekday, the differences in sales and average invoice are small, and none of the statistical tests found a significant difference or association.
+
+**What the analysis supports**
+
+- Sales are balanced across product lines and payment methods, and every branch performs at a similar level. Branch C's 4% lead comes from a higher average invoice, not more orders.
+- The **evening hour (19:00)** is the strongest sales hour, followed by 13:00; 16:00–17:00 and 20:00 are the weakest.
+- Membership, weekend shopping and customer rating show **no statistically significant effect** on spending.
+- Correlations between price, quantity and total are arithmetic consequences of how the columns are built, not behavioural findings.
+
+**What it does not support**
+
+- No evidence for a different strategy by branch, product line or customer segment.
+- The 19:00 peak is a **hypothesis for staffing or promotion timing**, because the notebook does not test it statistically.
+- "Not significant" means *no evidence of a difference*, not *proof of no difference*: with a few hundred invoices per group, small effects (roughly under 13% of the average invoice) would not be detected.
+- No conclusion about profitability, since `gross income` is only the 5% tax.
+
+**Suggested next steps**
+
+1. Test spending by gender and by branch, and analyse month and day of week (already derived in the notebook).
+2. Test the 19:00 peak against the other hours.
+3. Add effect sizes and confidence intervals to every comparison.
+4. Repeat the workflow on a real dataset with customer IDs, real cost data and at least 12 months of history.
+
+---
+
+## 7. Limitations
+
+- **Invoice-level data, no customer ID:** no retention, repeat-purchase or lifetime-value analysis; "Member share" refers to invoices.
+- **`gross income` is tax, not profit:** profitability cannot be assessed.
+- **Currency is not stated:** charts use `$` as an assumption.
+- **`Branch` and `City` are the same information** (1:1), so branch and city effects cannot be separated.
+- **Short period (89 days, one season):** no year-over-year comparison or seasonality analysis.
+- **Data looks synthetic:** unit price, quantity and rating are spread almost uniformly, and nearly every segment comparison is indistinguishable. Treat the results as a demonstration of method.
+- **Observational data:** associations are not causal effects.
+- **Multiple tests without correction:** none was significant, so conclusions are unaffected, but this matters if the analysis is extended.
+
+---
+
+## 8. Repository structure
+
+```
+supermarket-sales-analysis/
+├── README.md                                 ← this file
+├── Supermarket_Ədalət_Sadıqov.ipynb          ← analysis notebook
+├── supermarket_sales - Sheet1.csv            ← dataset
+├── requirements.txt
+├── .gitignore
+├── charts/
+│   ├── README.md                             ← chart explanations
+│   ├── 01_total_sales_by_product_line.png
+│   ├── 02_customer_type_distribution.png
+│   ├── 03_total_sales_by_hour.png
+│   ├── 04_sales_heatmap_branch_product.png
+│   └── 05_correlation_heatmap.png
+└── docs/
+    ├── DATASET_README.md                     ← dataset documentation
+    └── NOTEBOOK_README.md                    ← notebook guide
+```
+
+---
+
+## 9. How to run
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/edaletsadigov/supermarket-sales-analysis.git
+cd supermarket-sales-analysis
+
+# 2. (Optional) create a virtual environment
+python -m venv venv
+venv\Scripts\activate          # Windows
+# source venv/bin/activate     # macOS / Linux
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Open the notebook
+jupyter notebook Supermarket_Ədalət_Sadıqov.ipynb
+```
+
+Requirements: Python 3.12 or newer. Keep the CSV in the same folder as the notebook, then use **Kernel → Restart & Run All**.
+
+---
+
+## 10. Documentation index
+
+| Document | Contents |
+|---|---|
+| [charts/README.md](charts/README.md) | The five charts: what each shows, how to read it, key numbers and caveats |
+| [docs/DATASET_README.md](docs/DATASET_README.md) | Data dictionary, distributions, built-in relationships, quality checks, limitations |
+| [docs/NOTEBOOK_README.md](docs/NOTEBOOK_README.md) | Notebook structure, libraries, statistical methods and why they were used |
+
+---
+
+## 11. Author
+
+**Ədalət Sadıqov**, Data Analyst
+GitHub: [edaletsadigov](https://github.com/edaletsadigov) · LinkedIn: [edaletsadigov](https://www.linkedin.com/in/edaletsadigov)
+
+*Dataset: publicly available "Supermarket sales" data. Check the original source license before redistributing.*
