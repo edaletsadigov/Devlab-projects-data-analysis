@@ -2,7 +2,7 @@
 
 This document explains how the analysis notebook is organised, which libraries it uses, and which statistical methods it applies and why.
 
-- **Notebook:** [`Supermarket_Ədalət_Sadıqov.ipynb`](.../week1/Supermarket_analysis/notebook/Supermarket_Ədalət_Sadıqov.ipynb)
+- **Notebook:** [`Supermarket_Ədalət_Sadıqov.ipynb`](.../Supermarket_Ədalət_Sadıqov.ipynb)
 - **Data:** [`supermarket_sales - Sheet1.csv`](../supermarket_sales%20-%20Sheet1.csv) (see [dataset documentation](DATASET_README.md))
 - **Charts:** [`charts/`](../charts/README.md)
 
