@@ -4,7 +4,7 @@ This document explains how the analysis notebook is organised, which libraries i
 
 - **Notebook:** [`Supermarket_Ədalət_Sadıqov.ipynb`](/week1/Supermarket_analysis/notebook/Supermarket_%C6%8Fdal%C9%99t_Sad%C4%B1qov.ipynb)
 - **Data:** [`supermarket_sales - Sheet1.csv`](../supermarket_sales%20-%20Sheet1.csv) (see [dataset documentation](DATASET_README.md))
-- **Charts:** [`charts/`](../charts/README.md)
+- **Charts:** [`charts/`](/week1/Supermarket_analysis/charts/readme.md)
 
 ---
 
