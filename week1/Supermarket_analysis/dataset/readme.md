@@ -2,7 +2,7 @@
 
 A detailed description of the dataset used in this project.
 
-- **File:** [`supermarket_sales - Sheet1.csv`](/week1/Supermarket_analysis/dataset/supermarket_sales - Sheet1.csv)
+- **File:** [`supermarket_sales - Sheet1.csv`](/week1/Supermarket_analysis/dataset/supermarket_sales%20-%20Sheet1.csv)
 - **Size:** 1,000 rows × 17 columns (about 131 KB)
 - **Period:** 1 January 2019 – 30 March 2019 (89 consecutive days, every day present)
 - **Granularity:** one row = one invoice (a single product line, unit price and quantity per invoice)
