@@ -26,11 +26,11 @@ Identify where mall revenue comes from, by category, shopping mall, payment meth
 | Total revenue | 68,551,366 (currency not stated in the data) |
 | Missing values / duplicate rows | 0 / 0 |
 
-Full details: **[dataset/README.md](dataset/readme.md)**
+Full details: **[dataset/readme.md](dataset/readme.md)**
 
 ## Analysis workflow
 
-Load and validate → standardise text and parse dates → validate the price logic → feature engineering → six analysis sections → business insights. Step-by-step description: **[notebook/README.md](notebook/README.md)**
+Load and validate → standardise text and parse dates → validate the price logic → feature engineering → six analysis sections → business insights. Step-by-step description: **[notebook/README.md](notebook/readme.md)**
 
 ## Tools and technologies
 
@@ -84,9 +84,9 @@ Python 3.12+ · pandas · NumPy · Matplotlib · Seaborn · SciPy (Welch t-test)
 
 | Document | Link |
 |---|---|
-| Dataset README | [dataset/README.md](dataset/README.md) |
-| Charts README (all charts with explanations) | [charts/README.md](charts/README.md) |
-| Notebook README | [notebook/README.md](notebook/README.md) |
+| Dataset README | [dataset/README.md](dataset/readme.md) |
+| Charts README (all charts with explanations) | [charts/README.md](charts/readme.md) |
+| Notebook README | [notebook/README.md](notebook/readme.md) |
 | Analysis notebook | [notebook/istanbul_analysis.ipynb](notebook/istanbul_analysis.ipynb) |
 
 **Chart images:**
