@@ -26,7 +26,7 @@ Identify where mall revenue comes from, by category, shopping mall, payment meth
 | Total revenue | 68,551,366 (currency not stated in the data) |
 | Missing values / duplicate rows | 0 / 0 |
 
-Full details: **[dataset/README.md](dataset/README.md)**
+Full details: **[dataset/README.md](dataset/readme.md)**
 
 ## Analysis workflow
 
