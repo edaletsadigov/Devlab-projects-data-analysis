@@ -1,6 +1,6 @@
 # Dataset: `customer_shopping_data.csv`
 
-Back to the [main README](../README.md).
+Back to the [main README](../optional_2_readme.md).
 
 ## Description
 
