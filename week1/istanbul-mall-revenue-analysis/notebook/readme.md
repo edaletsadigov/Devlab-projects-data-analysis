@@ -1,6 +1,6 @@
 # Notebook: `istanbul_analysis.ipynb`
 
-Back to the [main README](../README.md) · Notebook: **[istanbul_analysis.ipynb](istanbul_analysis.ipynb)** · Data: [dataset/README.md](../dataset/README.md) · Charts: [charts/README.md](../charts/README.md)
+Back to the [main README](../optional_2_readme.md) · Notebook: **[istanbul_analysis.ipynb](istanbul_analysis.ipynb)** · Data: [dataset/README.md](../dataset/readme.md) · Charts: [charts/README.md](../charts/readme.md)
 
 ## Purpose
 
@@ -26,7 +26,7 @@ Prepare the retail invoice data and answer the five business questions listed in
 | **3. Shopping mall vs category** | Pivot table of revenue (with totals), log-scale heatmap, and each mall's category mix in % | Chart 03 |
 | **4. Yearly revenue** | Revenue by category and year, change 2021 → 2022, like-for-like comparison of 1 Jan – 8 Mar across three years, monthly trend | Charts 04, 05 |
 | **5. Male vs female** | Revenue, average purchase and invoice count by category and gender; category mix; Welch t-test per category | Chart 06 |
-| **6. Insights** | Five insights, each with FACT, ACTION and CONFIDENCE | See [main README](../README.md#five-actionable-business-insights-for-avm-management) |
+| **6. Insights** | Five insights, each with FACT, ACTION and CONFIDENCE | See [main README](../optional_2_readme.md#five-actionable-business-insights-for-avm-management) |
 
 ## Methods worth knowing
 
