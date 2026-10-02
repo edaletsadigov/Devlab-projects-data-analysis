@@ -1,6 +1,6 @@
 # Charts
 
-Back to the [main README](../README.md). All charts are exported from the [analysis notebook](../notebook/istanbul_analysis.ipynb) as PNG files (200 dpi). "Revenue" is the invoice total (`price`); the currency is not stated in the data. Period: 2021-01-01 to 2023-03-08.
+Back to the [main README](../optional_2_readme.md). All charts are exported from the [analysis notebook](../notebook/istanbul_analysis.ipynb) as PNG files (200 dpi). "Revenue" is the invoice total (`price`); the currency is not stated in the data. Period: 2021-01-01 to 2023-03-08.
 
 | # | File | Topic |
 |---|---|---|
