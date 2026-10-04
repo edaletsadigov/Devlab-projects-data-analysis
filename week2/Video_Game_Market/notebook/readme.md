@@ -2,8 +2,8 @@
 
 Regional comparison of video game sales: how North America, Europe, Japan and the rest of the world differ by genre, platform, publisher, release year and top games. The notebook is saved **with outputs** (charts are embedded as images, so they also display on GitHub).
 
-- **Data:** [`../data/vgsales.csv`](../dataset/vgsales.csv), described in [`../data/README.md`](../dataset/README.md)
-- **Charts:** 9 figures, exported separately to [`../charts/`](../charts/README.md)
+- **Data:** [`../data/vgsales.csv`](../dataset/vgsales.csv), described in [`../data/README.md`](../dataset/readme.md)
+- **Charts:** 9 figures, exported separately to [`../charts/`](../charts/readme.md)
 - **Run:** open the notebook from the `notebook/` folder (the data path is `../data/vgsales.csv`) and run all cells. Dependencies are in [`../requirements.txt`](../requirements.txt).
 
 ## Purpose
@@ -72,7 +72,7 @@ No hypothesis tests were run; all comparisons are descriptive. The statistical c
 
 ## Visualizations
 
-Nine Plotly charts, each with title, axis labels and a result sentence below it: total sales by region, zero-sales share, genre totals, genre share heatmap, top-10 platform split, top-5 publishers, sales by release year, share by decade, Spearman heatmap. See [`../charts/README.md`](../charts/README.md) for what each one shows and its main finding.
+Nine Plotly charts, each with title, axis labels and a result sentence below it: total sales by region, zero-sales share, genre totals, genre share heatmap, top-10 platform split, top-5 publishers, sales by release year, share by decade, Spearman heatmap. See [`../charts/README.md`](../charts/readme.md) for what each one shows and its main finding.
 
 ## Main findings
 
