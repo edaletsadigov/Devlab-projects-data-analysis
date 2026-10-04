@@ -2,7 +2,7 @@
 
 Regional comparison of video game sales: how North America, Europe, Japan and the rest of the world differ by genre, platform, publisher, release year and top games. The notebook is saved **with outputs** (charts are embedded as images, so they also display on GitHub).
 
-- **Data:** [`../data/vgsales.csv`](../data/vgsales.csv), described in [`../data/README.md`](../data/README.md)
+- **Data:** [`../data/vgsales.csv`](../dataset/vgsales.csv), described in [`../data/README.md`](../dataset/README.md)
 - **Charts:** 9 figures, exported separately to [`../charts/`](../charts/README.md)
 - **Run:** open the notebook from the `notebook/` folder (the data path is `../data/vgsales.csv`) and run all cells. Dependencies are in [`../requirements.txt`](../requirements.txt).
 
