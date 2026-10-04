@@ -1,0 +1,6 @@
+pandas>=2.2
+plotly>=5.24
+ipython
+jupyter
+# only needed to re-export the charts to PNG:
+kaleido==0.2.1
