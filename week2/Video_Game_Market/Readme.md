@@ -10,7 +10,7 @@ Compare regional video game markets by size, genre mix, platform mix, publisher 
 
 ## Dataset
 
-[`data/vgsales.csv`](data/vgsales.csv): 16,598 rows × 11 columns, one row per game and platform, sales in **millions of units**. Columns: `Rank`, `Name`, `Platform`, `Year`, `Genre`, `Publisher`, `NA_Sales`, `EU_Sales`, `JP_Sales`, `Other_Sales`, `Global_Sales`. Missing values: `Year` 271 rows (1.6%), `Publisher` 58 rows (0.3%). Full description in [`data/README.md`](data/README.md).
+[`data/vgsales.csv`](dataset/vgsales.csv): 16,598 rows × 11 columns, one row per game and platform, sales in **millions of units**. Columns: `Rank`, `Name`, `Platform`, `Year`, `Genre`, `Publisher`, `NA_Sales`, `EU_Sales`, `JP_Sales`, `Other_Sales`, `Global_Sales`. Missing values: `Year` 271 rows (1.6%), `Publisher` 58 rows (0.3%). Full description in [`data/README.md`](dataset/README.md).
 
 ## Tools and technologies
 
