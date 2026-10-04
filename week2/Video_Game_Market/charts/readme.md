@@ -2,7 +2,7 @@
 
 Nine charts from [`notebook/Regional_Sales_Breakdown.ipynb`](../notebook/Regional_Sales_Breakdown.ipynb), exported as PNG (2× scale, white background). The variable name in the notebook is given for each chart, so every image can be traced to its cell.
 
-All sales are in **millions of units**. Region colors are the same in every chart: North America `#2E86AB`, Europe `#F26419`, Japan `#A23B72`, Other `#7F7F7F`. Shares use the **sum of the 4 regions** as 100% (see [`data/README.md`](../data/README.md)).
+All sales are in **millions of units**. Region colors are the same in every chart: North America `#2E86AB`, Europe `#F26419`, Japan `#A23B72`, Other `#7F7F7F`. Shares use the **sum of the 4 regions** as 100% (see [`data/README.md`](../dataset/README.md)).
 
 | # | File | Notebook variable | Question |
 | - | ---- | ----------------- | -------- |
