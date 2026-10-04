@@ -14,7 +14,7 @@ Compare regional video game markets by size, genre mix, platform mix, publisher 
 
 ## Tools and technologies
 
-Python, pandas, Plotly (Express and Graph Objects), Jupyter Notebook, pandas for the statistics (no SciPy needed). Charts exported to PNG with Kaleido. See [`requirements.txt`](requirements.txt).
+Python, pandas, Plotly (Express and Graph Objects), Jupyter Notebook, pandas for the statistics (no SciPy needed). Charts exported to PNG with Kaleido. See [`requirements.txt`](notebook/requirements.txt).
 
 ## Analytical methodology
 
