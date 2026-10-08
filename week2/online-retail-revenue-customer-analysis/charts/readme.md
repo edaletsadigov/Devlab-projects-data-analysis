@@ -36,7 +36,7 @@ The notebook stores each chart as an interactive Plotly figure. [`scripts/export
 ## Gallery
 
 ### Chart 01 — Monthly Net Revenue and Order Count
-[![Monthly Net Revenue and Order Count](png/01_monthly_net_revenue_and_orders.png)](readmes/01_monthly_net_revenue_and_orders.md)
+[![Monthly Net Revenue and Order Count](01_monthly_net_revenue_and_orders.png)](readmes/01_monthly_net_revenue_and_orders.md)
 
 ### Chart 02 — Top 10 Non-UK Countries by Net Revenue
 [![Top 10 Non-UK Countries by Net Revenue](png/02_top10_non_uk_countries_net_revenue.png)](readmes/02_top10_non_uk_countries_net_revenue.md)
