@@ -401,8 +401,8 @@ Actionable Insights
 
 Data Analytics | Python | SQL | Power BI | Business Analytics
 
-GitHub: [@edaletsadigov](https://github.com/edaletsadigov)
-GitHub: [edaletsadigov](https://www.linkedin.com/in/edalet-sadigov-3b6297381/)
+- GitHub: [@edaletsadigov](https://github.com/edaletsadigov)
+- Linkedin: [edaletsadigov](https://www.linkedin.com/in/edalet-sadigov-3b6297381/)
 ---
 
 ## ⭐ DevLab Internship
